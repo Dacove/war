@@ -333,6 +333,9 @@ public class ZoneLobby {
 			setBlock(block.getFace(leftSide).getFace(BlockFace.UP), teamKind);
 			setBlock(block.getFace(rightSide).getFace(BlockFace.UP).getFace(BlockFace.UP), teamKind);
 			setBlock(block.getFace(BlockFace.UP).getFace(BlockFace.UP), teamKind);
+			//added for nations
+			setBlock(block,Material.PORTAL);
+			setBlock(block.getFace(BlockFace.UP), Material.PORTAL);
 		}
 	}
 	
@@ -362,6 +365,10 @@ public class ZoneLobby {
 			setBlock(block.getFace(leftSide).getFace(BlockFace.UP), material);
 			setBlock(block.getFace(rightSide).getFace(BlockFace.UP).getFace(BlockFace.UP), material);
 			setBlock(block.getFace(BlockFace.UP).getFace(BlockFace.UP), material);
+			
+			//added for nations
+			setBlock(block,Material.PORTAL);
+			setBlock(block.getFace(BlockFace.UP), Material.PORTAL);
 		}
 	}
 	
