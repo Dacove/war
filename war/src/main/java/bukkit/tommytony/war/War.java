@@ -166,15 +166,15 @@ public class War extends JavaPlugin {
 			}
 		
 			// Player commands: /warzones, /warzone, /teams, /join, /leave
-			if(command.equals("zones") || command.equals("warzones")){
+			if(command.equals("warzones")){
 				performZones(player);
-			} else if(command.equals("zone") || command.equals("warzone")) {
+			} else if(command.equals("warzone")) {
 				performZone(player, arguments);
 			} else if(command.equals("teams")){
 				performTeams(player);
-			} else if(command.equals("join") && canPlayWar(player)) {
+			} else if(command.equals("join-war") && canPlayWar(player)) {
 				performJoin(player, arguments);
-			} else if(command.equals("leave")) {
+			} else if(command.equals("leave-war")) {
 				performLeave(player);
 			} else if(command.equals("team")) {
 				performTeam(player, arguments);
@@ -907,7 +907,7 @@ public class War extends JavaPlugin {
 
 	public void performLeave(Player player) {
 		if(!this.inAnyWarzone(player.getLocation()) || this.getPlayerTeam(player.getName()) == null) {
-			this.badMsg(player, "Usage: /leave. " +
+			this.badMsg(player, "Usage: /leave-war. " +
 					"Must be in a team already.");
 		} else {
 			Warzone zone = getPlayerTeamWarzone(player.getName());
@@ -918,7 +918,7 @@ public class War extends JavaPlugin {
 	public void performJoin(Player player, String[] arguments) {
 		if(arguments.length < 1 || (!this.inAnyWarzone(player.getLocation()) && !this.inAnyWarzoneLobby(player.getLocation()))
 				|| (arguments.length > 0 && TeamKinds.teamKindFromString(arguments[0]) == null)) {
-			this.badMsg(player, "Usage: /join <diamond/iron/gold/d/i/g>." +
+			this.badMsg(player, "Usage: /join-war <Fire/Water/Earth/Air>." +
 					" Teams are warzone specific." +
 					" You must be inside a warzone or zone lobby to join a team." +
 					" Use as an alternative to walking through the team gate.");
@@ -961,7 +961,7 @@ public class War extends JavaPlugin {
 					if(team.getName().startsWith(name) || team.getKind() == kind) {
 						if(!warzone.hasPlayerInventory(player.getName())) {
 							warzone.keepPlayerInventory(player);
-							this.msg(player, "Your inventory is in storage until you /leave.");
+							this.msg(player, "Your inventory is in storage until you /leave-war.");
 						}
 						if(team.getPlayers().size() < warzone.getTeamCap()) {
 							team.addPlayer(player);
